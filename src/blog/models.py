@@ -62,3 +62,7 @@ class BlogPost(models.Model):
 
     def get_delete_url(self):
         return f"{self.get_absolute_url()}/delete"
+
+    def delete(self):
+        self.image.storage.delete(self.image.name)
+        super().delete()
